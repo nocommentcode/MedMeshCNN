@@ -18,7 +18,7 @@ class MeshUnion:
 
 
     def union(self, source, target):
-        index = torch.tensor([source], dtype=torch.long)
+        index = torch.tensor([source], dtype=torch.long, device=self.device)
         row = myindexrowselect(self.groups, index, self.device).to(self.device)
         row._indices()[0] = torch.tensor(target)
         row = torch.sparse_coo_tensor(indices=row._indices(), values= row._values(),
