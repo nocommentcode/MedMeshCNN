@@ -9,6 +9,19 @@ class BaseOptions:
         self.parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
         self.initialized = False
 
+    def get_device(self):
+        if not self.initialized:
+            self.initialize()
+        self.opt, unknown = self.parser.parse_known_args()
+
+        str_ids = self.opt.gpu_ids.split(',')
+        self.opt.gpu_ids = []
+        for str_id in str_ids:
+            id = int(str_id)
+            if id >= 0:
+                self.opt.gpu_ids.append(id)
+        return self.opt.gpu_ids
+
     def initialize(self):
         # data params
         self.parser.add_argument('--dataroot', help='path to meshes (should have subfolders train, test)')
