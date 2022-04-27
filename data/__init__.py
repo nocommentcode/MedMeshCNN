@@ -10,6 +10,14 @@ def CreateDataset(opt):
     elif opt.dataset_mode == 'classification':
         from data.classification_data import ClassificationData
         dataset = ClassificationData(opt)
+    elif opt.dataset_mode == 'regression':
+        from data.regression_data import RegressionData
+        dataset = RegressionData(opt)
+    elif opt.dataset_mode == 'quantile_classification':
+        from data.quantil_classification_dataset import QuantilClassificationData
+        dataset = QuantilClassificationData(opt)
+    else:
+        raise Exception(f"Dataset Mode {opt.dataset_mode} is not supported")
     return dataset
 
 

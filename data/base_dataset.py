@@ -9,6 +9,8 @@ class BaseDataset(data.Dataset):
         self.opt = opt
         self.mean = 0
         self.std = 1
+        self.mean_targets = 0
+        self.std_targets = 1
         self.ninput_channels = None
         super(BaseDataset, self).__init__()
 
@@ -37,6 +39,7 @@ class BaseDataset(data.Dataset):
                 std = std + features.std(axis=1)
             mean = mean / (i + 1)
             std = std / (i + 1)
+
             transform_dict = {'mean': mean[:, np.newaxis], 'std': std[:, np.newaxis],
                               'ninput_channels': len(mean)}
             with open(mean_std_cache, 'wb') as f:
@@ -50,6 +53,8 @@ class BaseDataset(data.Dataset):
             self.mean = transform_dict['mean']
             self.std = transform_dict['std']
             self.ninput_channels = transform_dict['ninput_channels']
+
+
 
 
 def collate_fn(batch):
