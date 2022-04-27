@@ -1,4 +1,3 @@
-from models.mesh_quantil_classifier import CFDQuantileAccuracy
 from options.test_options import TestOptions
 from options.train_options import TrainOptions
 from models.mesh_regression import CFDLoss
