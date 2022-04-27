@@ -17,6 +17,8 @@ class TrainOptions(BaseOptions):
         self.parser.add_argument('--lr', type=float, default=0.0002, help='initial learning rate for adam')
         self.parser.add_argument('--lr_policy', type=str, default='lambda', help='learning rate policy: lambda|step|plateau')
         self.parser.add_argument('--lr_decay_iters', type=int, default=50, help='multiply by a gamma every lr_decay_iters iterations')
+        self.parser.add_argument('--exclude_metrics', type=str, nargs='+', default=[], help='metrics to exclude from backpropagtion')
+
         # data augmentation stuff
         self.parser.add_argument('--num_aug', type=int, default=10, help='# of augmentation files')
         self.parser.add_argument('--scale_verts', action='store_true', help='non-uniformly scale the mesh e.g., in x, y or z')
@@ -26,3 +28,6 @@ class TrainOptions(BaseOptions):
         self.parser.add_argument('--no_vis', action='store_true', help='will not use tensorboard')
         self.parser.add_argument('--verbose_plot', action='store_true', help='plots network weights, etc.')
         self.is_train = True
+        self.parser.add_argument('--log_wandb', action='store_true', help='logs the training to wandb')
+        self.parser.add_argument('--run_name', type=str, default=None, help='the name of the run for wandb')
+
