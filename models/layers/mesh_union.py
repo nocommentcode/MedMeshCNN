@@ -7,7 +7,7 @@ from options.base_options import BaseOptions
 
 class MeshUnion:
     def __init__(self, n,  device=torch.device('cuda:0')):
-        self.device = device
+        self.device = torch.device('cuda:0')
 
         self.__size = n
         self.rebuild_features = self.rebuild_features_average
