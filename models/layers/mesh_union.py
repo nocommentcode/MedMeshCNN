@@ -7,8 +7,7 @@ from options.base_options import BaseOptions
 
 class MeshUnion:
     def __init__(self, n,  device=torch.device('cpu')):
-        gpu_ids = BaseOptions().get_device()
-        self.device = torch.device('cuda:{}'.format(gpu_ids[0])) if len(gpu_ids)>0 else torch.device('cpu')
+        self.device = device
 
         self.__size = n
         self.rebuild_features = self.rebuild_features_average
