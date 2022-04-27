@@ -138,3 +138,21 @@ def myindexrowselect(groups, mask_index, device):
                                      size=(len(mask_index), groups.shape[1]))
 
     return groups
+
+
+def clear_mesh_cashes(dataroot):
+    cache_count = 0
+    for i, target in enumerate(os.listdir(dataroot)):
+        d = os.path.join(dataroot, target)
+        if not os.path.isdir(d):
+            continue
+        else:
+            d = os.path.join(d, "cache")
+            if not os.path.isdir(d):
+                continue
+            else:
+                for to_delete in os.listdir(d):
+                    del_path = os.path.join(d, to_delete)
+                    os.remove(del_path)
+                    cache_count += 1
+    print(f"Cleared {cache_count} cache files from data dir")
