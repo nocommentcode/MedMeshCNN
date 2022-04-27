@@ -6,7 +6,7 @@ from util.util import  myindexrowselect
 from options.base_options import BaseOptions
 
 class MeshUnion:
-    def __init__(self, n,  device=torch.device('cpu')):
+    def __init__(self, n,  device=torch.device('cuda:0')):
         self.device = device
 
         self.__size = n
