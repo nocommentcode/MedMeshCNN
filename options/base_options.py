@@ -20,7 +20,7 @@ class BaseOptions:
             id = int(str_id)
             if id >= 0:
                 self.opt.gpu_ids.append(id)
-        return self.opt.gpu_ids
+        return [0]
 
     def initialize(self):
         # data params
